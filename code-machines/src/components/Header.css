@@ -1,0 +1,66 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px; /* Adjust padding for better spacing */
+    position: fixed; /* Keep header fixed at the top */
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    font-family: 'Syne', sans-serif;
+    background: linear-gradient(to right, #e2efff, #ffe2f0); /* Add background gradient */
+    box-sizing: border-box;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+.logo .code {
+    color: #ff00ff;
+}
+
+.logo .mac {
+    color: #d3d3d3;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    gap: 40px; /* Adjust gap for better spacing */
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+.nav-link {
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.3s;
+    letter-spacing: 0.05em;
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+.nav-link:hover {
+    color: #6200ea;
+}
+
+.signup {
+    background: linear-gradient(90deg, #ab47bc, #7b1fa2);
+    color: white;
+    padding: 10px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: background 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Ensure text is centered */
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+.signup:hover {
+    background: linear-gradient(90deg, #8e24aa, #6a1b9a);
+}
