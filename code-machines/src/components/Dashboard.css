@@ -1,0 +1,236 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Syne', sans-serif;
+}
+
+body {
+    background: linear-gradient(to right, #e2efff, #ffe2f0);
+    color: #333;
+}
+
+.dashboard {
+    display: flex;
+    padding: 2rem; /* Increased padding around the dashboard */
+}
+
+.sidebar {
+    width: 250px;
+    min-height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: transparent;
+    border-right: 1px solid #ddd;
+    padding: 2rem; /* Increased padding around the sidebar */
+}
+
+.sidebar .logo {
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #6200ea;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 1rem;
+}
+
+.sidebar ul li {
+    padding: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background 0.3s;
+    color: #555;
+}
+
+.sidebar ul li:hover,
+.sidebar ul li.active {
+    background: #e4e4e4;
+}
+
+.sidebar ul li i {
+    margin-right: 1rem;
+}
+
+.main-content {
+    margin-left: 290px; /* Adjusted for increased sidebar padding */
+    padding: 2rem;
+    flex-grow: 1;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.welcome-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left; /* Align text to the left */
+}
+
+.welcome-section h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.welcome-section p {
+    font-size: 1rem;
+    color: #777;
+    margin-top: -0.5rem;
+}
+
+.user-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.notification-icon {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+}
+
+.user-img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-right: 0.5rem;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-info div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.user-info h4 {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.user-info small {
+    font-size: 0.875rem;
+    color: #777;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-gap: 2rem;
+    margin-bottom: 2rem;
+    padding: 2rem; /* Increased padding around the cards */
+}
+
+.card {
+    background: white;
+    border-radius: 0.5rem;
+    padding: 1.5rem; /* Increased padding within each card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card.leaderboard {
+    grid-row: span 4;
+}
+
+.card.large-stat {
+    grid-row: span 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.card.small-stat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-header h3 {
+    margin-top: 0.5rem;
+    font-size: 2rem;
+    color: #333;
+}
+
+.card-header p {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    color: #777;
+}
+
+.custom-icon {
+    font-size: 50px;
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.leaderboard-entry {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.leaderboard-entry img {
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+.leaderboard-entry h4 {
+    margin: 0;
+}
+
+.leaderboard-entry small {
+    color: #777;
+}
+
+.leaderboard-position {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+.leaderboard-position span:first-child {
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.stat-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-info h3 {
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.stat-info p {
+    font-size: 1.2rem;
+    color: #777;
+}
