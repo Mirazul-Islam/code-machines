@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
+import HandleLogout from './Logout'; // Import HandleLogout function
 import {
     Dashboard as DashboardIcon,
     Assignment as AssignmentIcon,
@@ -18,11 +20,27 @@ import {
 } from '@mui/icons-material';
 
 const Dashboard = () => {
+    const navigate = useNavigate();
+    const logout = HandleLogout();
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+
+        if (!token || token === 'undefined') {
+            navigate('/login'); // Redirect to login if no token is found
+            // HandleLogout();
+        }
+        // Optionally, you could verify the token with the server here
+    }, [navigate]);
+
+    const username = localStorage.getItem('username');
+    const email = localStorage.getItem('email');
+
     return (
         <div className="dashboard">
             <div className="sidebar">
                 <div className="logo">
-                    <h1>Code Mac</h1>
+                    <h1>Code Machines</h1>
                 </div>
                 <ul>
                     <li className="active"><DashboardIcon /> Dashboard</li>
@@ -32,21 +50,21 @@ const Dashboard = () => {
                     <li><EmojiEventsIcon /> Leaderboard</li>
                     <li><Brightness4Icon /> Dark mode</li>
                     <li><SettingsIcon /> Settings</li>
-                    <li><ExitToAppIcon /> Log Out</li>
+                    <li onClick={logout}><ExitToAppIcon /> Log Out</li>
                 </ul>
             </div>
             <div className="main-content">
                 <header>
                     <div className="welcome-section">
-                        <h2>Welcome Abdullah!</h2>
+                        <h2>Welcome {username}!</h2>
                         <p>Here is your Profile Dashboard</p>
                     </div>
                     <div className="user-wrapper">
                         <NotificationsIcon className="notification-icon" />
-                        <img src="https://via.placeholder.com/30" alt="user" className="user-img" />
-                        <div>
-                            <h4>Abdullah</h4>
-                            <small>Super Admin</small>
+                        <img src="https://www.shutterstock.com/image-vector/default-avatar-profile-icon-transparent-600nw-2463868847.jpg" alt="user" className="user-img" />
+                        <div className='user-info-banner'>
+                            <h4>{username}</h4>
+                            <small>{email}</small>
                         </div>
                     </div>
                 </header>
@@ -55,10 +73,10 @@ const Dashboard = () => {
                         <div className="card leaderboard">
                             <div className="card-header">
                                 <EmojiEventsIcon className="custom-icon" />
-                                <h3>Leader Board</h3>
+                                <h3>Leaderboard</h3>
                             </div>
                             <div className="card-body">
-                                <div className="leaderboard-entry">
+                                {/* <div className="leaderboard-entry">
                                     <img src="https://via.placeholder.com/50" alt="John Leboo" />
                                     <div>
                                         <h4>John Leboo</h4>
@@ -90,14 +108,14 @@ const Dashboard = () => {
                                         <span>3</span>
                                         <span role="img" aria-label="bronze medal">🥉</span>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                         <div className="card large-stat">
                             <div className="card-header">
                                 <AssignmentIcon className="custom-icon" />
                                 <div className="stat-info">
-                                    <h3>32</h3>
+                                    <h3>0</h3>
                                     <p>Tests Written</p>
                                 </div>
                             </div>
@@ -106,7 +124,7 @@ const Dashboard = () => {
                             <div className="card-header">
                                 <MailIcon className="custom-icon" />
                                 <div className="stat-info">
-                                    <h3>32</h3>
+                                    <h3>0</h3>
                                     <p>No of Tests</p>
                                 </div>
                             </div>
@@ -115,7 +133,7 @@ const Dashboard = () => {
                             <div className="card-header">
                                 <ThumbUpIcon className="custom-icon" />
                                 <div className="stat-info">
-                                    <h3>12</h3>
+                                    <h3>0</h3>
                                     <p>Passed</p>
                                 </div>
                             </div>
@@ -124,7 +142,7 @@ const Dashboard = () => {
                             <div className="card-header">
                                 <DashboardIcon className="custom-icon" />
                                 <div className="stat-info">
-                                    <h3>%80</h3>
+                                    <h3>0%</h3>
                                     <p>Overall Average</p>
                                 </div>
                             </div>
@@ -133,7 +151,7 @@ const Dashboard = () => {
                             <div className="card-header">
                                 <ThumbDownIcon className="custom-icon" />
                                 <div className="stat-info">
-                                    <h3>19</h3>
+                                    <h3>0</h3>
                                     <p>Failed</p>
                                 </div>
                             </div>
@@ -142,7 +160,7 @@ const Dashboard = () => {
                             <div className="card-header">
                                 <StarIcon className="custom-icon" />
                                 <div className="stat-info">
-                                    <h3>1</h3>
+                                    <h3>0</h3>
                                     <p>Waiting for result</p>
                                 </div>
                             </div>

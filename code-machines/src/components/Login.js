@@ -1,24 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import Header from './Header';
 import './Login.css';
 import girlImage from '../assets/girl.png'; // Adjust the path according to your file structure
 
 const Login = () => {
-    const [email, setEmail] = useState('');
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (localStorage.length > 1) {
+            // console.log(localStorage);
+            navigate('/dashboard'); // Redirect to login if no token is found
+        }
+        // Optionally, you could verify the token with the server here
+    }, [navigate]);
+
+
+
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
 
+
     const handleLogin = async (e) => {
         e.preventDefault();
+
         try {
             const response = await axios.post('http://localhost:5000/api/login', {
-                email,
+                username,
                 password
             });
-            setMessage(response.data.msg);
+            
+            if (response.data.success) {
+                // Store the JWT token
+                localStorage.setItem('username', response.data.username);
+                localStorage.setItem('email', response.data.email);
+                localStorage.setItem('token', response.data.token);
+                // console.log(response.data);
+                // console.log(localStorage);
+                navigate('/dashboard'); // Redirect to the desired page on successful login
+            
+            } else {
+                setMessage(response.data.message);
+            }
+        
         } catch (error) {
-            setMessage(error.response.data.msg);
+            console.log(error);
+            // setMessage(error.data.message ? error.data.message : 'An error occurred');
+            setMessage('Incorrect username or password');
+
         }
     };
 
@@ -35,10 +66,10 @@ const Login = () => {
                             <h2>Log In</h2>
                         </div>
                         <input 
-                            type="email" 
-                            placeholder="Mail Id" 
-                            value={email} 
-                            onChange={(e) => setEmail(e.target.value)} 
+                            type="text" 
+                            placeholder="Username" 
+                            value={username} 
+                            onChange={(e) => setUsername(e.target.value)} 
                             required 
                         />
                         <input 
@@ -49,6 +80,8 @@ const Login = () => {
                             required 
                         />
                         <button type="submit">Log In</button>
+                        {message && <p style={{ color: 'red' }}>{message}</p>}
+
                         <p>
                             Don't have an Account? <a href="/register">Sign Up</a>
                         </p>

@@ -106,6 +106,10 @@ header {
     margin-right: 0.5rem;
 }
 
+.user-info-banner {
+    text-align: left;
+}
+
 .user-info {
     display: flex;
     align-items: center;
